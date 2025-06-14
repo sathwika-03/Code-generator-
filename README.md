@@ -26,7 +26,7 @@ This is a simple, stylish, and powerful QR Code Generator built with HTML, CSS, 
 
 
 
-git clone https://github.com/sathwika-03/Code-Generator.git
+git clone https://github.com/sathwika-03/Code-generator-.git
 
 
 2. Open code generator.html in your browser.
