@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>QR Code Generator (Any Emoji Support)</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 320px;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  button {
+    background-color: #5b86e5;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #3a5bdc;
+  }
+  canvas {
+    margin-top: 25px;
+  }
+</style>
+</head>
+<body>
 
+<div class="container">
+  <h1>QR Code Generator (Any Emoji Support)</h1>
+  <input type="text" id="text" placeholder="Type text or emojis anywhere 😄❤️🚀" />
+  <button id="generate">Generate QR Code</button>
+  <div id="qrcode"></div>
+</div>
+
+<!-- qrcode library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<script>
+  const generateBtn = document.getElementById('generate');
+  const qrcodeDiv = document.getElementById('qrcode');
+
+  generateBtn.addEventListener('click', () => {
+    const text = document.getElementById('text').value.trim();
+
+    if (!text) {
+      alert('Please enter some text or emojis!');
+      return;
+    }
+
+    // Clear previous QR code
+    qrcodeDiv.innerHTML = '';
+
+    // Generate QR code on canvas
+    QRCode.toCanvas(text, { errorCorrectionLevel: 'H', width: 220 }, function (err, canvas) {
+      if (err) {
+        alert('Error generating QR code: ' + err);
+        return;
+      }
+      qrcodeDiv.appendChild(canvas);
+    });
+  });
+</script>
+
+</body>
+</html>
